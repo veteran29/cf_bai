@@ -1,7 +1,5 @@
-if not ( isServer ) then 
-{
+if not ( isServer ) exitWith {
   diag_log text "[CF_BAI] In client mode";
-  exit;
 };
 
 diag_log text "[CF_BAI] In server mode";

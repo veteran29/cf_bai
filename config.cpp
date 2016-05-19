@@ -7,19 +7,28 @@ class CfgPatches
 			units[] = { };
 			weapons[] = { };
 			requiredAddons[] = {"CBA_Extended_EventHandlers"};
-			version = "5.5";
-			versionStr = "5.5";
-			versionDesc="CFOAI";
+			version = "1.0";
+			versionStr = "1.0";
+			versionDesc="CFOBAI";
 			versionAr[] = {1,0};
 			author[] = {"BrightCandle"};
 		};
 };
 
-class Extended_PostInit_EventHandlers {
-    class cf_bai_init {
-		init = "if (isNil 'cf_bai_init') then { cf_bai_init = true;[] execVM '\cf_bai\init.sqf'};"; 
-    };
-}; 
+class CfgFunctions
+{
+	class cf_bai
+	{
+		class init
+		{
+			class cf_bai_init
+			{
+				file ="cf_bai\cf_bai_init.sqf";
+				postInit = 1;
+			};
+		};
+	};
+};
 
 class cf_bai_settings
 {
