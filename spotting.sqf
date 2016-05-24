@@ -4,41 +4,72 @@ _terrainCountFactor = 100 / ((cf_bai_terrain_maximum_count/10)^2);
 
 diag_log formatText ["[CF_BAI] Terrain count factor is: %1", _terrainCountFactor];
 
-FNC_getMaximumSpotting = {
-	_defaultSpot = _this getVariable _spotAttribute;
+FNC_getMaximumSkill = {
+	params ["_unit","_skill", "_skill_attribute"];
+	
+	_default_skill = _unit getVariable _skill_attribute;
 			
-	_currentSpotDistance = _this skill "spotDistance";
+	_current_skill = _unit skill _skill;
 
-	if(isNil "_defaultSpot") then {
-		_this setVariable [_spotAttribute,_currentSpotDistance];
+	if(isNil "_default_skill") then {
+		_unit setVariable [_skill_attribute,_current_skill];
 	} else {
-		if (_currentSpotDistance > _defaultSpot) then {
-			_this setVariable [_spotAttribute,_currentSpotDistance];
+		if (_current_skill > _default_skill) then {
+			_unit setVariable [_skill_attribute,_current_skill];
 		};
 	};
 	
-	_this getVariable _spotAttribute;
+	_unit getVariable _skill_attribute;
+	
+};
+
+FNC_x2 = {
+	params ["_x","_minimumPercentage", "_maximum"];
+	
+	_minimum = (_maximum*_minimumPercentage);
+	_range = _maximum - _minimum;
+	_decrement = ((_x / 10)^2) * _terrainCountFactor * 0.01 * _range;
+	_final = _maximum - _decrement;
+	_final;
+};
+
+FNC_update_individual_skill = {
+	params ["_unit","_terrain_impact","_skill","_skill_attribute","_config_minimum_skill_percentage"];
+	
+	_maximum_skill = [_unit,_skill,_skill_attribute] call FNC_getMaximumSkill;
+	_final_skill = [_terrain_impact,_config_minimum_skill_percentage,_maximum_skill] call FNC_x2;
+	_unit setskill [_skill,_final_skill];
+	
+	// diag_log formatText ["[CF_BAI] Terrain impact: %1,Skill:%2, Maximum Skill: %3, Final Skill:%4", _terrain_impact,_skill,_maximum_skill,_final_skill];
+};
+
+FNC_update_unit_skills = {
+	params ["_unit","_terrain_impact"];
+	
+	[_unit,_terrain_impact,"spotDistance","CF_BAI_DEFAULT_SPOT_DISTANCE",cf_bai_minimum_spot_distance] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"aimingAccuracy","CF_BAI_DEFAULT_AIMING_ACCURACY",cf_bai_minimum_aiming_accuracy] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"aimingSpeed","CF_BAI_DEFAULT_AIMING_SPEED",cf_bai_minimum_aiming_speed] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"commanding","CF_BAI_DEFAULT_COMMANDING",cf_bai_minimum_commanding] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"spotTime","CF_BAI_DEFAULT_SPOT_TIME",cf_bai_minimum_spot_time] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"courage","CF_BAI_DEFAULT_COURAGE",cf_bai_minimum_courage] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"aimingShake","CF_BAI_DEFAULT_AIMING_SHAKE",cf_bai_minimum_aiming_shake] call FNC_update_individual_skill;
 };
 
 while {true} do{
+	_startTime = diag_tickTime;
 	{
 		if (!isPlayer _x) then {
 			_countTerrain = count nearestTerrainObjects [_x, _reducingTerrains, cf_bai_terrain_range];
 			
 			_terrainImpact = _countTerrain min cf_bai_terrain_maximum_count;
-
-			_maximumSpot = _x call FNC_getMaximumSpotting;
 			
-			_spottingDistanceRange = _maximumSpot - (_maximumSpot*cf_bai_minimum_spot);
-			_decrement = ((_terrainImpact / 10)^2) * _terrainCountFactor * 0.01 * _spottingDistanceRange;
-			_finalSpotDistance = _maximumSpot - _decrement;
-			
-			_x setskill ["spotDistance",_finalSpotDistance];
-
-			diag_log formatText ["[CF_BAI] Terrain count: %1,Maximum Spot: %2, Final Spot:%3", _countTerrain,_maximumSpot,_finalSpotDistance];
+			[_x,_terrainImpact] call FNC_update_unit_skills;
 		}
 		
 	} forEach allUnits;
-
+	
+	_endTime = diag_tickTime;
+	diag_log formatText ["[CF_BAI] runtime:%1",_endTime-_startTime];
+	
 	sleep 10;
 };

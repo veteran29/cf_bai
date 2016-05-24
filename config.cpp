@@ -1,4 +1,4 @@
-// tpwcas ArmA 3 Version 5.5 20140428
+// cf_bai ArmA 3 Version 1.0
 
 class CfgPatches
 {
@@ -6,10 +6,10 @@ class CfgPatches
 		{
 			units[] = { };
 			weapons[] = { };
-			requiredAddons[] = {"CBA_Extended_EventHandlers"};
+			requiredAddons[] = {};
 			version = "1.0";
 			versionStr = "1.0";
-			versionDesc="CFOBAI";
+			versionDesc="CFO_BAI";
 			versionAr[] = {1,0};
 			author[] = {"BrightCandle"};
 		};
