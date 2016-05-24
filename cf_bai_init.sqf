@@ -31,5 +31,14 @@ diag_log formatText ["[CF_BAI] Minimum Courage time is set to %1", cf_bai_minimu
 cf_bai_minimum_aiming_shake = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_minimum_aiming_shake");
 diag_log formatText ["[CF_BAI] Minimum Aiming Shake time is set to %1", cf_bai_minimum_aiming_shake];
 
+_debug_logging = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_debug_logging");
+if (_debug_logging!=0) then {
+  cf_bai_debug_logging =true;
+} else {
+  cf_bai_debug_logging =false;
+};
+
+diag_log formatText ["[CF_BAI] Debug logging is set to %1", cf_bai_debug_logging];
+
 
 [] execVM "\cf_bai\spotting.sqf";
