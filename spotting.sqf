@@ -13,10 +13,6 @@ FNC_getMaximumSkill = {
 
 	if(isNil "_default_skill") then {
 		_unit setVariable [_skill_attribute,_current_skill];
-	} else {
-		if (_current_skill > _default_skill) then {
-			_unit setVariable [_skill_attribute,_current_skill];
-		};
 	};
 	
 	_unit getVariable _skill_attribute;
@@ -33,12 +29,24 @@ FNC_x2 = {
 	_final;
 };
 
+FNC_set_skill = {
+	params ["_unit","_skill","_final_skill"];
+  
+	_tpwcas_orig_accuracy = _unit getVariable ["tpwcas_originalaccuracy",-2];
+  
+	if(_tpwcas_orig_accuracy != -2) then {
+		[_unit,_skill,_final_skill] call FNC_setskill_tpwcas;
+	} else {
+		_unit setskill [_skill,_final_skill];
+	};
+};
+
 FNC_update_individual_skill = {
 	params ["_unit","_terrain_impact","_skill","_skill_attribute","_config_minimum_skill_percentage"];
 	
 	_maximum_skill = [_unit,_skill,_skill_attribute] call FNC_getMaximumSkill;
 	_final_skill = [_terrain_impact,_config_minimum_skill_percentage,_maximum_skill] call FNC_x2;
-	_unit setskill [_skill,_final_skill];
+	[_unit,_skill,_final_skill] call FNC_set_skill;
 	
 	if( cf_bai_debug_logging ) then {
 	  diag_log formatText ["[CF_BAI] Unit: %1, Terrain impact: %2,Skill:%3, Maximum Skill: %4, Final Skill:%5", _unit, _terrain_impact,_skill,_maximum_skill,_final_skill];

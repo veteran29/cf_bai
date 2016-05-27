@@ -40,5 +40,6 @@ if (_debug_logging!=0) then {
 
 diag_log formatText ["[CF_BAI] Debug logging is set to %1", cf_bai_debug_logging];
 
+FNC_setskill_tpwcas = compile preprocessFileLineNumbers "cf_bai\setskill.sqf";
 
 [] execVM "\cf_bai\spotting.sqf";
