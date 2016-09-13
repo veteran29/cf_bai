@@ -54,7 +54,7 @@ FNC_set_skill = {
 	private _tpwcas_orig_accuracy = _unit getVariable ["tpwcas_originalaccuracy",-2];
   
 	if(_tpwcas_orig_accuracy != -2) then {
-		[_unit,_skill,_final_skill] call FNC_setskill_tpwcas;
+		[_unit,_skill,_final_skill] call CF_BAI_FNC_setskill_tpwcas;
 	} else {
 		_unit setskill [_skill,_final_skill];
 	};
