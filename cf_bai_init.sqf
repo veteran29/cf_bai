@@ -1,38 +1,49 @@
+#define QUOTE(var1) #var1
+#define CF_BAI_SETDEFAULT(var,def) if (isNil QUOTE(var)) then {var = def}; diag_log formatText ["[CF_BAI] %1 = %2", QUOTE(var),var];
+
 if not ( isServer ) exitWith {
   diag_log text "[CF_BAI] In client mode";
 };
 
 diag_log text "[CF_BAI] In server mode";
 
-cf_bai_terrain_range = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_terrain_range");
-cf_bai_terrain_maximum_count = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_terrain_maximum_count");
+if(isFilePatchingEnabled) then {
+	CF_BAI_SETTINGS = compile preprocessFileLineNumbers "\userconfig\cf_bai\cf_bai_settings.sqf";
+	
+	if (!isNil "CF_BAI_SETTINGS") then {
+		diag_log text "[CF_BAI] Config file loaded";
+		[] call CF_BAI_SETTINGS;
+	} else {
+		diag_log text "[CF_BAI] WARNING - Config file not found, using defaults";
+	};
 
-diag_log formatText ["[CF_BAI] Terrain Range is %1", cf_bai_terrain_range];
-diag_log formatText ["[CF_BAI] Maximum terrain count is %1", cf_bai_terrain_maximum_count];
+} else {
+	diag_log text "[CF_BAI] WARNING - filepatching needs to be set to enable loading the config file, using defaults";
+};
 
-cf_bai_minimum_spot_distance = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_minimum_spot_distance");
-diag_log formatText ["[CF_BAI] Minimum spot distance is set to %1", cf_bai_minimum_spot_distance];
+CF_BAI_SETDEFAULT(cf_bai_terrain_range,25);
+CF_BAI_SETDEFAULT(cf_bai_terrain_maximum_count,30);
 
-cf_bai_minimum_aiming_accuracy = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_minimum_aiming_accuracy");
-diag_log formatText ["[CF_BAI] Minimum spot accuracy is set to %1", cf_bai_minimum_aiming_accuracy];
+CF_BAI_SETDEFAULT(cf_bai_minimum_spotDistance,0.35);
+CF_BAI_SETDEFAULT(cf_bai_minimum_aimingAccuracy,0.41);
+CF_BAI_SETDEFAULT(cf_bai_minimum_aimingSpeed,0.50);
+CF_BAI_SETDEFAULT(cf_bai_minimum_commanding,0.50);
+CF_BAI_SETDEFAULT(cf_bai_minimum_spotTime,0.50);
+CF_BAI_SETDEFAULT(cf_bai_minimum_courage,1.0);
+CF_BAI_SETDEFAULT(cf_bai_minimum_aimingShake,1.0);
+CF_BAI_SETDEFAULT(cf_bai_minimum_general,1.0);
 
-cf_bai_minimum_aiming_speed = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_minimum_aiming_speed");
-diag_log formatText ["[CF_BAI] Minimum Aiming speed is set to %1", cf_bai_minimum_aiming_speed];
+CF_BAI_SETDEFAULT(cf_bai_maximum_spotDistance,-1.0);
+CF_BAI_SETDEFAULT(cf_bai_maximum_aimingAccuracy,-1.0);
+CF_BAI_SETDEFAULT(cf_bai_maximum_aimingSpeed,-1.0);
+CF_BAI_SETDEFAULT(cf_bai_maximum_commanding,-1.0);
+CF_BAI_SETDEFAULT(cf_bai_maximum_spotTime,-1.0);
+CF_BAI_SETDEFAULT(cf_bai_maximum_courage,-1.0);
+CF_BAI_SETDEFAULT(cf_bai_maximum_aimingShake,-1.0);
+CF_BAI_SETDEFAULT(cf_bai_maximum_general,-1.0);
 
-cf_bai_minimum_commanding = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_minimum_commanding");
-diag_log formatText ["[CF_BAI] Minimum Commanding is set to %1", cf_bai_minimum_commanding];
-
-cf_bai_minimum_spot_time = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_minimum_spot_time");
-diag_log formatText ["[CF_BAI] Minimum Spot time is set to %1", cf_bai_minimum_spot_time];
-
-cf_bai_minimum_courage = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_minimum_courage");
-diag_log formatText ["[CF_BAI] Minimum Courage time is set to %1", cf_bai_minimum_courage];
-
-cf_bai_minimum_aiming_shake = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_minimum_aiming_shake");
-diag_log formatText ["[CF_BAI] Minimum Aiming Shake time is set to %1", cf_bai_minimum_aiming_shake];
-
-_debug_logging = getNumber(configFile>> "cf_bai_settings"  >> "cf_bai_debug_logging");
-if (_debug_logging!=0) then {
+CF_BAI_SETDEFAULT(cf_bai_debug_logging,0);
+if (cf_bai_debug_logging!=0) then {
   cf_bai_debug_logging =true;
 } else {
   cf_bai_debug_logging =false;
@@ -41,5 +52,7 @@ if (_debug_logging!=0) then {
 diag_log formatText ["[CF_BAI] Debug logging is set to %1", cf_bai_debug_logging];
 
 FNC_setskill_tpwcas = compile preprocessFileLineNumbers "cf_bai\setskill.sqf";
+
+sleep 30;
 
 [] execVM "\cf_bai\spotting.sqf";
