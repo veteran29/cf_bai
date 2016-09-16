@@ -22,7 +22,10 @@ if(isFilePatchingEnabled) then {
 };
 
 CF_BAI_SETDEFAULT(cf_bai_terrain_range,25);
-CF_BAI_SETDEFAULT(cf_bai_terrain_maximum_count,30);
+CF_BAI_SETDEFAULT(cf_bai_terrain_maximum_default,30);
+CF_BAI_SETDEFAULT(cf_bai_terrain_maximum_world,[]);
+
+CF_BAI_SETDEFAULT(cf_bai_sleep,30);
 
 CF_BAI_SETDEFAULT(cf_bai_minimum_spotDistance,0.35);
 CF_BAI_SETDEFAULT(cf_bai_minimum_aimingAccuracy,0.41);
@@ -52,7 +55,6 @@ if (cf_bai_debug_logging!=0) then {
 diag_log formatText ["[CF_BAI] Debug logging is set to %1", cf_bai_debug_logging];
 
 CF_BAI_FNC_setskill_tpwcas = compile preprocessFileLineNumbers "cf_bai\setskill.sqf";
-
-sleep 30;
+CF_BAI_FNC_terrain_count = compile preprocessFileLineNumbers "cf_bai\terrain_count.sqf";
 
 [] execVM "\cf_bai\spotting.sqf";

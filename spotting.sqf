@@ -1,9 +1,15 @@
 private _reducingTerrains = ["Tree","Bush","SMALL TREE"];
-private _terrainCountFactor = 100 / ((cf_bai_terrain_maximum_count/10)^2);
+
+private _maxTerrainCount = [] call CF_BAI_FNC_terrain_count;
+
+private _terrainCountFactor = 100 / ((_maxTerrainCount/10)^2);
 
 if( cf_bai_debug_logging ) then {
+	diag_log formatText ["[CF_BAI] Max Terrain count is: %1", _maxTerrainCount];
 	diag_log formatText ["[CF_BAI] Terrain count factor is: %1", _terrainCountFactor];
 };
+
+sleep cf_bai_sleep;
 
 FNC_getConfiguredMaximumSkill = {
 	params ["_unit","_skill"];
@@ -90,9 +96,9 @@ while {true} do{
 	private _startTime = diag_tickTime;
 	{
 		if (!isPlayer _x) then {
-			private _countTerrain = count nearestTerrainObjects [_x, _reducingTerrains, cf_bai_terrain_range,false];
+			private _terrainCount = count nearestTerrainObjects [_x, _reducingTerrains, cf_bai_terrain_range,false];
 			
-			private _terrainImpact = _countTerrain min cf_bai_terrain_maximum_count;
+			private _terrainImpact = _terrainCount min _maxTerrainCount;
 			
 			[_x,_terrainImpact] call FNC_update_unit_skills;
 		};
