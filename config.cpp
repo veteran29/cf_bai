@@ -1,4 +1,4 @@
-// cf_bai ArmA 3 Version 1.1
+// cf_bai ArmA 3 Version 1.2
 
 class CfgPatches
 {
@@ -7,10 +7,10 @@ class CfgPatches
 			units[] = { };
 			weapons[] = { };
 			requiredAddons[] = {};
-			version = "1.1";
-			versionStr = "1.1";
+			version = "1.2";
+			versionStr = "1.2";
 			versionDesc="CFO_BAI";
-			versionAr[] = {1,1};
+			versionAr[] = {1,2};
 			author = "BrightCandle";
 		};
 };
