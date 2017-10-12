@@ -11,6 +11,8 @@ if( cf_bai_debug_logging ) then {
 
 sleep cf_bai_sleep;
 
+diag_log formatText ["[CF_BAI] testCheckbox %1", cf_bai_testCheckbox];
+
 FNC_getConfiguredMaximumSkill = {
 	params ["_unit","_skill"];
 
