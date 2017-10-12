@@ -1,0 +1,41 @@
+Charlie Foxtrot Better AI mod
+
+How to build
+============
+
+Using the Arma 3 tools in Steam under tools
+Use the addon builder and it needs a source directory pointing at the cf_bai base directory, give it a destination that ends in cf_bai.pbo
+Do no binarize as this doesn't seem to work properly, everything else can stay as defaults.
+
+The mod then has a very simple layout with a single PBO file and the userconfig.
+
+
+What the mod attempts to fix
+=============================
+
+The observation after playing Arma 3 for some years is that the AI has a substantial advantage in forests over players than it does in more open ground. 
+The theory we have is that the players eyes are drawn to the terrain and the camoflage the units wear works against us whereas it doesn't appear to be balanced to worked against the AI.
+Thus the idea is to reduce the AI's skilled dependent on the terrain they find themselves and the potential spotted target in.
+In practice we have found some numbers that appear to normalise the AI's relatively skill in forests and other high vegetation areas and make it possible to utilise the same base sub skill settings and get even gameplay across scenarios.
+
+The mod could also in theory address towns and other urban environments. We have found that AI has a disadvantage in these circumstances quite often and hence should probably get a boost in these sorts of surroundings.
+
+How the mod works
+=================
+
+I never found an acceptable way to address reducing the AI's skill based on the players surroundings so currently the idea behind the mod is that the terrain around the AI itself is counted within a particular range and then based on that count
+the subskills are reduced in defined ways. The various files for the mod do the following:
+
+cf_bai_init.sqf - initialises the defaults and loads the skills from the config file if found and allowed
+config.cpp - Contains the mods meta data as well as naming the cf_bai_init.sqf file as an initialiser to run at game start
+setskill.sqf - Takes a units existing skill and adjusts it to the calculated reduced skill dependent on the known normal maximum skill of the unit and deals with TPWCAS integration since both mods adjust the units skills.
+terrain_count.sqf - Returns the maximum terrain count for a given terrain, some maps don't work with the default due to having more blocking trees or bushes and this allows deals with allowing the override
+spotting.sqf - The main algorithm itself which loops all the enemy units that are still alive, counts the terrain around them, calculates what the skill reduction should be and then applies it.
+
+Notes about skill reduction
+===========================
+
+One observation about terrain counting objects was that twice the count was around 4 times as actual blocking to the human eye. This relationship is very similar to the way in which light when it doubles the distances quarters its power
+and for similar reasons. Thus the mod uses an approximation that is based on an X^2 algorithm as a percentage of the maximum terrain count not a linear one. Half of the count, say 15 out of 30, will only reduce the skill 25% and not 50%.
+
+Other than that the mod is relatively simplistic and split into functions within the spotting.sqf file.
