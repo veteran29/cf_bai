@@ -1,31 +1,33 @@
-// cf_bai ArmA 3 Version 1.2
-
 class CfgPatches
 {
 	class cf_bai
 		{
 			units[] = { };
 			weapons[] = { };
-			requiredAddons[] = {};
-			version = "1.2";
-			versionStr = "1.2";
-			versionDesc="CFO_BAI";
-			versionAr[] = {1,2};
+			requiredAddons[] = {"CBA_MAIN"};
+			requiredVersion=1.82;
+			version = "1.3";
+			versionStr = "1.3";
+			versionDesc="CF_BAI";
+			versionAr[] = {1,3};
 			author = "BrightCandle";
+			authors[]= {"BrightCandle"};
+			url = "https://www.charliefoxtrotops.eu";
 		};
 };
 
-class CfgFunctions
-{
-	class cf_bai
-	{
-		class init
-		{
-			class cf_bai_init
-			{
-				file ="cf_bai\cf_bai_init.sqf";
-				postInit = 1;
-			};
-		};
-	};
+class CfgSettings {
+   class CBA {
+      class Versioning {
+         class cf_bai {
+           	main_addon = "cf_bai";
+
+            class Dependencies {
+               CBA[]={"cba_main", {3,6,0}, "true"};
+            };
+         };
+      };
+   };
 };
+
+#include "CfgEventHandlers.hpp"

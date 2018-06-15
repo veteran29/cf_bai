@@ -1,17 +1,8 @@
+#include "script_component.hpp"
+
 private _reducingTerrains = ["Tree","Bush","SMALL TREE"];
 
-private _maxTerrainCount = [] call CF_BAI_FNC_terrain_count;
-
-private _terrainCountFactor = 100 / ((_maxTerrainCount/10)^2);
-
-if( cf_bai_debug_logging ) then {
-	diag_log formatText ["[CF_BAI] Max Terrain count is: %1", _maxTerrainCount];
-	diag_log formatText ["[CF_BAI] Terrain count factor is: %1", _terrainCountFactor];
-};
-
 sleep cf_bai_sleep;
-
-diag_log formatText ["[CF_BAI] testCheckbox %1", cf_bai_testCheckbox];
 
 FNC_getConfiguredMaximumSkill = {
 	params ["_unit","_skill"];
@@ -20,7 +11,7 @@ FNC_getConfiguredMaximumSkill = {
 	
 	private _max_skill = currentNamespace getVariable(_generated_maximumskill_name);
 	
-	if( _max_skill < 0.0 ) then {
+	if( _max_skill <= 0.0 ) then {
 		_max_skill = _unit skill _skill;
 	};
 	
@@ -62,7 +53,7 @@ FNC_set_skill = {
 	private _tpwcas_orig_accuracy = _unit getVariable ["tpwcas_originalaccuracy",-2];
   
 	if(_tpwcas_orig_accuracy != -2) then {
-		[_unit,_skill,_final_skill] call CF_BAI_FNC_setskill_tpwcas;
+		[_unit,_skill,_final_skill] call FUNC(setskill_tpwcas);
 	} else {
 		_unit setskill [_skill,_final_skill];
 	};
@@ -95,6 +86,14 @@ FNC_update_unit_skills = {
 };
 
 while {true} do{
+	private _maxTerrainCount = [] call FUNC(terrain_count);
+	private _terrainCountFactor = 100 / ((_maxTerrainCount/10)^2);
+	
+	if( cf_bai_debug_logging ) then {
+		diag_log formatText ["[CF_BAI] Max Terrain count is: %1", _maxTerrainCount];
+		diag_log formatText ["[CF_BAI] Terrain count factor is: %1", _terrainCountFactor];
+	};
+
 	private _startTime = diag_tickTime;
 	{
 		if (!isPlayer _x) then {
