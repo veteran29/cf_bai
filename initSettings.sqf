@@ -59,7 +59,7 @@
 ] call CBA_Settings_fnc_init;
 
 [   "cf_bai_minimum_general","SLIDER",
-    ["Minimum percentage AI general subskill""The percentage of the usual skill it will drop to when the most terrain objects is detected"],[CATEGORY_NAME,"Minimum Skill"],
+    ["Minimum percentage AI general subskill","The percentage of the usual skill it will drop to when the most terrain objects is detected"],[CATEGORY_NAME,"Minimum Skill"],
     [0.01,1.0,1.0,2],true,{}
 ] call CBA_Settings_fnc_init;
 
@@ -101,8 +101,4 @@
 [   "cf_bai_maximum_general","SLIDER",
     ["Maximum AI general subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[CATEGORY_NAME,"Maximum Skill"],
     [0.00,1.0,0.0,2],true,{}
-] call CBA_Settings_fnc_init;
-
-[   "cf_bai_debug_logging","CHECKBOX","Turn on debug logging output",[CATEGORY_NAME,"General"],
-    false,false,{}
 ] call CBA_Settings_fnc_init;

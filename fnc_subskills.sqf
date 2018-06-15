@@ -15,9 +15,7 @@ FNC_getConfiguredMaximumSkill = {
 		_max_skill = _unit skill _skill;
 	};
 	
-	if( cf_bai_debug_logging ) then {
-		diag_log formatText ["[CF_BAI] Maximum skill:%1,value:%2",_skill,_max_skill];
-	};
+	LOG_2("Maximum skill:%1,value:%2",_skill,_max_skill);
 	
 	_max_skill;
 };
@@ -66,9 +64,7 @@ FNC_update_individual_skill = {
 	private _final_skill = [_terrain_impact,_config_minimum_skill_percentage,_maximum_skill] call FNC_x2;
 	[_unit,_skill,_final_skill] call FNC_set_skill;
 	
-	if( cf_bai_debug_logging ) then {
-		diag_log formatText ["[CF_BAI] Unit: %1, Terrain impact: %2,Skill:%3, Maximum Skill: %4, Final Skill:%5", _unit, _terrain_impact,_skill,_maximum_skill,_final_skill];
-	};
+	LOG_5("Unit: %1, Terrain impact: %2,Skill:%3, Maximum Skill: %4, Final Skill:%5", _unit, _terrain_impact,_skill,_maximum_skill,_final_skill);
 	
 };
 
@@ -89,10 +85,7 @@ while {true} do{
 	private _maxTerrainCount = [] call FUNC(terrain_count);
 	private _terrainCountFactor = 100 / ((_maxTerrainCount/10)^2);
 	
-	if( cf_bai_debug_logging ) then {
-		diag_log formatText ["[CF_BAI] Max Terrain count is: %1", _maxTerrainCount];
-		diag_log formatText ["[CF_BAI] Terrain count factor is: %1", _terrainCountFactor];
-	};
+	LOG_2 ["Max Terrain count is: %1, Terrain count factor is %2", _maxTerrainCount,_terrainCountFactor];
 
 	private _startTime = diag_tickTime;
 	{
@@ -108,13 +101,10 @@ while {true} do{
 	
 	private _endTime = diag_tickTime;
 	
-	if( cf_bai_debug_logging ) then {
-		diag_log formatText ["[CF_BAI] Runtime:%1",_endTime-_startTime];
-	};
+	LOG_1("Runtime:%1",_endTime-_startTime);
 	
 	private _sleepTime = 10 - (_endTime-_startTime);
 	if (_sleepTime > 0) then {
 		sleep _sleepTime;
 	};
-	
 };
