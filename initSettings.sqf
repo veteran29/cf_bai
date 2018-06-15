@@ -12,14 +12,15 @@
 
 [   "cf_bai_terrain_maximum_world_code","EDITBOX",
     ["Terrain count overrides", "Terrain specific overrides to the maximum default terain counts"],[CATEGORY_NAME,"General"],
-    "[[""pja310"",25],[""Panthera3"",25]]",true,{
+    "[[""pja310"",25],[""Panthera3"",25]]",true,
+    {
         _code = "cf_bai_terrain_maximum_world = " + _this;
         call compile _code;
     }
 ] call CBA_Settings_fnc_init;
 
 [   "cf_bai_sleep","SLIDER",
-    ["Loop time","Limited by server performance, more often is better, in seconds"],[CATEGORY_NAME,"General"],
+    ["Initial Sleep time","CF BAI waits for this many seconds before starting to allow AI skill initialisation to occur, if using CF_BAI skills then this can be zero, ASR_AI requires ~30"],[CATEGORY_NAME,"General"],
     [10,120,30,0],true,{}
 ] call CBA_Settings_fnc_init;
 
