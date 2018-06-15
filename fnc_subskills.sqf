@@ -2,12 +2,14 @@
 
 private _reducingTerrains = ["Tree","Bush","SMALL TREE"];
 
-sleep cf_bai_sleep;
+sleep GVAR(sleep);
 
 FNC_getConfiguredMaximumSkill = {
 	params ["_unit","_skill"];
 
-	private _generated_maximumskill_name = "cf_bai_maximum_" + _skill;
+	private _generated_maximumskill_name = QGVAR(maximum_) + _skill;
+
+	LOG_1("Generated maximum skill name: %1",_generated_maximumskill_name);
 	
 	private _max_skill = currentNamespace getVariable(_generated_maximumskill_name);
 	
@@ -64,39 +66,39 @@ FNC_update_individual_skill = {
 	private _final_skill = [_terrain_impact,_config_minimum_skill_percentage,_maximum_skill] call FNC_x2;
 	[_unit,_skill,_final_skill] call FNC_set_skill;
 	
-	LOG_5("Unit: %1, Terrain impact: %2,Skill:%3, Maximum Skill: %4, Final Skill:%5", _unit, _terrain_impact,_skill,_maximum_skill,_final_skill);
-	
+	LOG_5("Unit: %1 Terrain impact: %2 Skill:%3 Maximum Skill: %4 Final Skill:%5", _unit, _terrain_impact,_skill,_maximum_skill,_final_skill);
+	_final_skill
 };
 
 FNC_update_unit_skills = {
 	params ["_unit","_terrain_impact"];
 	
-	[_unit,_terrain_impact,"spotDistance","CF_BAI_DEFAULT_SPOT_DISTANCE",cf_bai_minimum_spotDistance] call FNC_update_individual_skill;
-	[_unit,_terrain_impact,"aimingAccuracy","CF_BAI_DEFAULT_AIMING_ACCURACY",cf_bai_minimum_aimingAccuracy] call FNC_update_individual_skill;
-	[_unit,_terrain_impact,"aimingSpeed","CF_BAI_DEFAULT_AIMING_SPEED",cf_bai_minimum_aimingSpeed] call FNC_update_individual_skill;
-	[_unit,_terrain_impact,"commanding","CF_BAI_DEFAULT_COMMANDING",cf_bai_minimum_commanding] call FNC_update_individual_skill;
-	[_unit,_terrain_impact,"spotTime","CF_BAI_DEFAULT_SPOT_TIME",cf_bai_minimum_spotTime] call FNC_update_individual_skill;
-	[_unit,_terrain_impact,"courage","CF_BAI_DEFAULT_COURAGE",cf_bai_minimum_courage] call FNC_update_individual_skill;
-	[_unit,_terrain_impact,"aimingShake","CF_BAI_DEFAULT_AIMING_SHAKE",cf_bai_minimum_aimingShake] call FNC_update_individual_skill;
-	[_unit,_terrain_impact,"general","CF_BAI_DEFAULT_GENERAL",cf_bai_minimum_general] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"spotDistance","CF_BAI_DEFAULT_SPOT_DISTANCE",GVAR(minimum_spotDistance)] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"aimingAccuracy","CF_BAI_DEFAULT_AIMING_ACCURACY",GVAR(minimum_aimingAccuracy)] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"aimingSpeed","CF_BAI_DEFAULT_AIMING_SPEED",GVAR(minimum_aimingSpeed)] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"commanding","CF_BAI_DEFAULT_COMMANDING",GVAR(minimum_commanding)] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"spotTime","CF_BAI_DEFAULT_SPOT_TIME",GVAR(minimum_spotTime)] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"courage","CF_BAI_DEFAULT_COURAGE",GVAR(minimum_courage)] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"aimingShake","CF_BAI_DEFAULT_AIMING_SHAKE",GVAR(minimum_aimingShake)] call FNC_update_individual_skill;
+	[_unit,_terrain_impact,"general","CF_BAI_DEFAULT_GENERAL",GVAR(minimum_general)] call FNC_update_individual_skill;
 };
 
 while {true} do{
 	private _maxTerrainCount = [] call FUNC(terrain_count);
 	private _terrainCountFactor = 100 / ((_maxTerrainCount/10)^2);
 	
-	LOG_2 ["Max Terrain count is: %1, Terrain count factor is %2", _maxTerrainCount,_terrainCountFactor];
+	LOG_2("Max Terrain count is: %1, Terrain count factor is %2", _maxTerrainCount,_terrainCountFactor);
 
 	private _startTime = diag_tickTime;
 	{
 		if (!isPlayer _x) then {
-			private _terrainCount = count nearestTerrainObjects [_x, _reducingTerrains, cf_bai_terrain_range,false];
+			private _terrainCount = count nearestTerrainObjects [_x, _reducingTerrains, GVAR(terrain_range),false];
 			
 			private _terrainImpact = _terrainCount min _maxTerrainCount;
 			
 			[_x,_terrainImpact] call FNC_update_unit_skills;
 		};
-		sleep 0.1;
+		sleep 0.02;
 	} forEach allUnits;
 	
 	private _endTime = diag_tickTime;
