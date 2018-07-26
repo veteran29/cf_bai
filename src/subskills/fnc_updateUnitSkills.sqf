@@ -5,7 +5,7 @@ params ["_unit","_terrain_impact","_terrainCountFactor"];
 FNC_getConfiguredMaximumSkill = {
 	params ["_unit","_skill"];
 
-	private _generated_maximumskill_name = QGVAR(maximum_) + _skill;
+	private _generated_maximumskill_name = QGVAR(maximum) + _skill;
 
 	LOG_1("Generated maximum skill name: %1",_generated_maximumskill_name);
 	
