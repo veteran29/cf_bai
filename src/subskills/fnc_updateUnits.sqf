@@ -13,7 +13,7 @@ while {true} do{
 	private _startTime = diag_tickTime;
 	{
 		if (!isPlayer _x) then {
-			private _terrainCount = count nearestTerrainObjects [_x, _reducingTerrains, GVAR(terrain_range),false];
+			private _terrainCount = count nearestTerrainObjects [_x, _reducingTerrains, GVAR(terrain_range),false,true];
 			
 			private _terrainImpact = _terrainCount min _maxTerrainCount;
 			

@@ -70,64 +70,40 @@ GVAR(terrain_maximum_world) = [["pja310",25],["Panthera3",25]];
 
 [   QGVAR(maximum_spotDistance),"SLIDER",
     ["Maximum AI spot distance subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
-    [0.00,1.0,0.0,2],true,{
-        params ["_newValue"];
-        ["spotDistance",_newValue] call FUNC(setNewMaximum);
-    }
+    [0.00,1.0,0.0,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(maximum_aimingAccuracy),"SLIDER",
     ["Maximum AI aiming accuracy subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
-    [0.00,1.0,0.0,2],true,{
-        params ["_newValue"];
-        ["aimingAccuracy",_newValue] call FUNC(setNewMaximum);
-    }
+    [0.00,1.0,0.0,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(maximum_aimingSpeed),"SLIDER",
     ["Maximum AI aiming speed subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
-    [0.00,1.0,0.0,2],true,{
-        params ["_newValue"];
-        ["aimingSpeed",_newValue] call FUNC(setNewMaximum);
-    }
+    [0.00,1.0,0.0,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(maximum_commanding),"SLIDER",
     ["Maximum AI commanding subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
-    [0.00,1.0,0.0,2],true,{
-        params ["_newValue"];
-        ["commanding",_newValue] call FUNC(setNewMaximum);
-    }
+    [0.00,1.0,0.0,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(maximum_spotTime),"SLIDER",
     ["Maximum AI spot time subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
-    [0.00,1.0,0.0,2],true,{
-        params ["_newValue"];
-        ["spotTime",_newValue] call FUNC(setNewMaximum);
-    }
+    [0.00,1.0,0.0,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(maximum_courage),"SLIDER",
     ["Maximum AI courage subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
-    [0.00,1.0,0.0,2],true,{
-        params ["_newValue"];
-        ["courage",_newValue] call FUNC(setNewMaximum);
-    }
+    [0.00,1.0,0.0,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(maximum_aimingShake),"SLIDER",
     ["Maximum AI aiming shake subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
-    [0.00,1.0,0.0,2],true,{
-        params ["_newValue"];
-        ["aimingShake",_newValue] call FUNC(setNewMaximum);
-    }
+    [0.00,1.0,0.0,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(maximum_general),"SLIDER",
     ["Maximum AI general subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
-    [0.00,1.0,0.0,2],true,{
-        params ["_newValue"];
-        ["general",_newValue] call FUNC(setNewMaximum);
-    }
+    [0.00,1.0,0.0,2],true,{}
 ] call CBA_Settings_fnc_init;
