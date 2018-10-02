@@ -6,10 +6,10 @@ class CfgPatches
 			weapons[] = { };
 			requiredAddons[] = {"CBA_MAIN"};
 			requiredVersion=1.82;
-			version = "1.3";
-			versionStr = "1.3";
+			version = "1.3.2";
+			versionStr = "1.3.2";
 			versionDesc="CF_BAI";
-			versionAr[] = {1,3};
+			versionAr[] = {1,3,2};
 			author = "BrightCandle";
 			authors[]= {"BrightCandle"};
 			url = "https://www.charliefoxtrotops.eu";

@@ -34,12 +34,12 @@ GVAR(terrain_maximum_world) = [["pja310",25],["Panthera3",25]];
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(minimum_aimingAccuracy),"SLIDER",
-    ["Minimum percentage AI aiming subskill","The percentage of the usual skill it will drop to when the most terrain objects is detected"],[_categoryName,"Minimum Skill"],
+    ["Minimum percentage AI aiming accuracy subskill","The percentage of the usual skill it will drop to when the most terrain objects is detected"],[_categoryName,"Minimum Skill"],
     [0.01,1.0,0.41,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(minimum_aimingSpeed),"SLIDER",
-    ["Minimum percentage AI aiming subskill","The percentage of the usual skill it will drop to when the most terrain objects is detected"],[_categoryName,"Minimum Skill"],
+    ["Minimum percentage AI aiming speed subskill","The percentage of the usual skill it will drop to when the most terrain objects is detected"],[_categoryName,"Minimum Skill"],
     [0.01,1.0,0.50,2],true,{}
 ] call CBA_Settings_fnc_init;
 
