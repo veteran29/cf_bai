@@ -12,7 +12,7 @@ class CfgPatches
 			versionAr[] = {1,3,2};
 			author = "BrightCandle";
 			authors[]= {"BrightCandle"};
-			url = "https://www.charliefoxtrotops.eu";
+			url = "https://www.charliefoxtrotops.com";
 		};
 };
 
