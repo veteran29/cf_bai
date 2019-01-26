@@ -1,0 +1,345 @@
+version=1;
+class GraphItems
+{
+	class Item0
+	{
+		Flags=250;
+		BasicText="";
+		Left=-700.32404;
+		Top=-397.86389;
+		Right=-610.32404;
+		Bottom=-347.86401;
+		BgColor=255;
+		class ItemInfo
+		{
+			Text="Start";
+			lStyle=-842150451;
+			Shape=6;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			FontUnderline=1;
+			FontCharSet=0;
+			ItemType=0;
+			class ItemInfo
+			{
+				Id=1;
+				InitCode="private _prior = -1;" \n "private _current = getSuppression _this;";
+			};
+		};
+	};
+	class Item1
+	{
+		Flags=250;
+		BasicText="";
+		Left=-701.13397;
+		Top=-220.88359;
+		Right=-611.13397;
+		Bottom=-170.88359;
+		BgColor=16777215;
+		class ItemInfo
+		{
+			Text="alive";
+			lStyle=-842150451;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=0;
+			FontCharSet=0;
+			ItemType=3;
+			class ItemInfo
+			{
+				Id=10;
+			};
+		};
+	};
+	class Item2
+	{
+		Flags=250;
+		BasicText="";
+		Left=-559.51318;
+		Top=-118.8779;
+		Right=-469.51318;
+		Bottom=-68.877899;
+		BgColor=16777215;
+		class ItemInfo
+		{
+			Text="setSkill";
+			lStyle=-842150451;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=0;
+			FontCharSet=0;
+			ItemType=2;
+			class ItemInfo
+			{
+				Id=3;
+				InitCode="[_this,_current] call CF_BAI_suppresion_setSkill;" \n "_prior = _current;";
+			};
+		};
+	};
+	class Item3
+	{
+		Flags=250;
+		BasicText="";
+		Left=-904.41315;
+		Top=-221.38347;
+		Right=-814.41315;
+		Bottom=-171.38358;
+		BgColor=16777215;
+		class ItemInfo
+		{
+			Text="isDead";
+			lStyle=-842150451;
+			Shape=2;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=0;
+			FontCharSet=0;
+			ItemType=6;
+			class ItemInfo
+			{
+				Id=4;
+				Priority=1;
+				Condition="!alive _this;";
+			};
+		};
+	};
+	class Item4
+	{
+		Flags=250;
+		BasicText="";
+		Left=-905.56287;
+		Top=-99.691467;
+		Right=-815.56256;
+		Bottom=-49.691483;
+		BgColor=33023;
+		class ItemInfo
+		{
+			Text="Dead";
+			lStyle=-842150451;
+			Shape=6;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			FontCharSet=0;
+			ItemType=1;
+			class ItemInfo
+			{
+				Id=5;
+			};
+		};
+	};
+	class Item5
+	{
+		Flags=250;
+		BasicText="";
+		Left=-701.13403;
+		Top=-119.2663;
+		Right=-611.13403;
+		Bottom=-69.266403;
+		BgColor=16777215;
+		class ItemInfo
+		{
+			Text="changed";
+			lStyle=-842150451;
+			Shape=2;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=0;
+			FontCharSet=0;
+			ItemType=6;
+			class ItemInfo
+			{
+				Id=7;
+				Condition="_current = getSuppression _this;" \n "_current != _prior;";
+			};
+		};
+	};
+	class Item6
+	{
+		Flags=218;
+		BasicText="";
+		Left=-701.13403;
+		Top=-310.70587;
+		Right=-611.13403;
+		Bottom=-260.70584;
+		BgColor=8421440;
+		class ItemInfo
+		{
+			Text="true";
+			lStyle=-842150451;
+			Shape=2;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=0;
+			FontCharSet=0;
+			ItemType=8;
+			class ItemInfo
+			{
+				Id=15;
+				Condition="true;";
+			};
+		};
+	};
+	class Item7
+	{
+		Flags=218;
+		BasicText="";
+		Left=-562.31769;
+		Top=-222.69815;
+		Right=-472.31769;
+		Bottom=-172.69815;
+		BgColor=8421440;
+		class ItemInfo
+		{
+			Text="true";
+			lStyle=-842150451;
+			Shape=2;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=0;
+			FontCharSet=0;
+			ItemType=8;
+			class ItemInfo
+			{
+				Id=13;
+				Condition="true;";
+			};
+		};
+	};
+};
+class GraphLinks
+{
+	class Link0
+	{
+		From=0;
+		To=6;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+	class Link1
+	{
+		From=1;
+		To=3;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+	class Link2
+	{
+		From=1;
+		To=5;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+	class Link3
+	{
+		From=2;
+		To=7;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+	class Link4
+	{
+		From=3;
+		To=4;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+	class Link5
+	{
+		From=5;
+		To=2;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+	class Link6
+	{
+		From=6;
+		To=1;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+	class Link7
+	{
+		From=7;
+		To=1;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+};
+class Globals
+{
+	NextGroupID=1;
+	NextID=16;
+	FSMName="suppression";
+	CompileConfig="C:\Users\Paul\Nextcloud\Projects\cf_bai_suppression\FSMConfig.cfg";
+	class DefaultLink
+	{
+		ArrowSize=0;
+	};
+	DefaultLinkColor=6316128;
+	DefaultLinkColorFromSelected=6316287;
+	DefaultLinkColorToSelected=6356832;
+	DefaultLinkUseCustom=1;
+	PZoomLeft=-1330.3561;
+	PZoomRight=-15.659912;
+	PZoomBottom=512.50323;
+	PZoomTop=-607.68353;
+	Clxs=1122;
+	Clys=956;
+	Aspect=1;
+};
+class Window
+{
+	Flags=2;
+	MaxPosX=-1;
+	MaxPosY=-1;
+	MinPosX=-1;
+	MinPosY=-1;
+	Left=26;
+	Top=26;
+	Right=1062;
+	Bottom=806;
+	ShowCmd=3;
+	SplitPos=1140;
+};
