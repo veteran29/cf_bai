@@ -6,4 +6,4 @@ if (not isServer ) exitWith {
 
  INFO("In server mode");
 
-[] execVM "x\cf_bai\addons\subskills\fnc_updateUnits.sqf";
+[] execVM "x\CF_BAI\addons\subskills\fnc_updateUnits.sqf";

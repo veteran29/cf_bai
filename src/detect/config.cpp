@@ -1,13 +1,13 @@
 class CfgPatches
 {
-	class cf_bai_detect
+	class CF_BAI_detect
 		{
 			units[] = { };
 			weapons[] = { };
 			requiredAddons[] = {"CBA_MAIN"};
-			version = "1.0";
-			versionStr = "1.0";
-			versionDesc="CFO_BAI_DETECT";
+			version = "1.2";
+			versionStr = "1.2";
+			versionDesc="CFO_BAI_detect";
 			versionAr[] = {1,2};
 			author = "BrightCandle";
 			authors[]= {"BrightCandle"};

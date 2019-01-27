@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class cf_bai
+	class CF_BAI_subskills
 		{
 			units[] = { };
 			weapons[] = { };
@@ -8,7 +8,7 @@ class CfgPatches
 			requiredVersion=1.82;
 			version = "1.3.2";
 			versionStr = "1.3.2";
-			versionDesc="CF_BAI";
+			versionDesc="CF_BAI_subskills";
 			versionAr[] = {1,3,2};
 			author = "BrightCandle";
 			authors[]= {"BrightCandle"};
@@ -19,8 +19,8 @@ class CfgPatches
 class CfgSettings {
    class CBA {
       class Versioning {
-         class cf_bai {
-           	main_addon = "cf_bai";
+         class CF_BAI_subskills {
+           	main_addon = "CF_BAI_main";
 
             class Dependencies {
                CBA[]={"cba_main", {3,6,0}, "true"};

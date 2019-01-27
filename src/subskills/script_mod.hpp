@@ -1,4 +1,4 @@
-#define PREFIX cf_bai
+#define PREFIX CF_BAI
 #define MAJOR 1
 #define MINOR 3
 #define PATCHLVL 2
@@ -8,4 +8,4 @@
 #define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD
 
 // MINIMAL required version for the Mod. Components can specify others..
-#define REQUIRED_VERSION 1.82
+#define REQUIRED_VERSION 1.88
