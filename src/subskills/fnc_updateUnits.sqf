@@ -6,18 +6,17 @@ sleep GVAR(sleep);
 
 while {true} do{
 	private _maxTerrainCount = [] call FUNC(terrainCount);
-	private _terrainCountFactor = 100 / ((_maxTerrainCount/10)^2);
 	
-	LOG_2("Max Terrain count is: %1, Terrain count factor is %2", _maxTerrainCount,_terrainCountFactor);
+	LOG_1("Max Terrain count is: %1", _maxTerrainCount);
 
 	private _startTime = diag_tickTime;
 	{
 		if (!isPlayer _x) then {
 			private _terrainCount = count nearestTerrainObjects [_x, _reducingTerrains, GVAR(terrain_range),false,true];
 			
-			private _terrainImpact = _terrainCount min _maxTerrainCount;
+			private _terrainImpact = (_terrainCount min _maxTerrainCount)/_maxTerrainCount;
 			
-			[_x,_terrainImpact,_terrainCountFactor] call FUNC(updateUnitSkills);
+			[_x,_terrainImpact] call FUNC(updateUnitPipelineSkills);
 		};
 		sleep 0.02;
 	} forEach allUnits;

@@ -43,6 +43,11 @@ GVAR(terrain_maximum_world) = [["pja310",25],["Panthera3",25]];
     [0.01,1.0,0.50,2],true,{}
 ] call CBA_Settings_fnc_init;
 
+[   QGVAR(minimum_reloadSpeed),"SLIDER",
+    ["Minimum percentage AI reload speed subskill","The percentage of the usual skill it will drop to when the most terrain objects is detected"],[_categoryName,"Minimum Skill"],
+    [0.01,1.0,0.50,2],true,{}
+] call CBA_Settings_fnc_init;
+
 [   QGVAR(minimum_commanding),"SLIDER",
     ["Minimum percentage AI commanding subskill","The percentage of the usual skill it will drop to when the most terrain objects is detected"],[_categoryName,"Minimum Skill"],
     [0.01,1.0,0.50,2],true,{}
@@ -80,6 +85,11 @@ GVAR(terrain_maximum_world) = [["pja310",25],["Panthera3",25]];
 
 [   QGVAR(maximum_aimingSpeed),"SLIDER",
     ["Maximum AI aiming speed subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
+    [0.00,1.0,0.0,2],true,{}
+] call CBA_Settings_fnc_init;
+
+[   QGVAR(maximum_reloadSpeed),"SLIDER",
+    ["Maximum AI reload speed subskill","The normal skill the unit will have, a value of 0.0 means the skill wont be changed from the mission/addon settings"],[_categoryName,"Maximum Skill"],
     [0.00,1.0,0.0,2],true,{}
 ] call CBA_Settings_fnc_init;
 
