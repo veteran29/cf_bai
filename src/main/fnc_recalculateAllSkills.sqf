@@ -18,13 +18,16 @@ params ["_unit"];
 
 private _pipelines = [_unit] call FUNCMAIN(getUnitPipeline);
 
-{
-	private _calcSkill = 1.0;
+if ([_pipelines] call FUNCMAIN(hasBaseSkills)) then {
 	{
-		_calcSkill = _calcSkill * _x;
-	}forEach _x;
+		private _calcSkill = 1.0;
+		{
+			_calcSkill = _calcSkill * _x;
+		}forEach _x;
 
-	_subSkill = [_forEachIndex] call FUNCMAIN(indexToSubSkill);
-	_unit setSkill [_subSkill,_calcSkill];
+		_subSkill = [_forEachIndex] call FUNCMAIN(indexToSubSkill);
+		_unit setSkill [_subSkill,_calcSkill];
 
-}forEach _pipelines;
+	}forEach _pipelines;
+	LOG_2("Unit: %1, all subskills recalculated to: %2 pipelines",_unit,_pipelines);
+};

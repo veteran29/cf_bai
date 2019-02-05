@@ -19,7 +19,6 @@ FNC_getBaseSkill = {
 	_baseSkill;
 };
 
-//x at 1.0 is maximum effect
 FNC_x2 = {
 	params ["_x","_subSkillMultiplier"];
 
@@ -53,6 +52,8 @@ FNC_update_unit_skills = {
 
 		[_unit,_baseSkills] call CF_BAI_fnc_setBaseSkills;
 		_unit setVariable ["CF_BAI_MAXIMUM",true,false];
+
+		LOG_2("Unit: %1, set the base skills to %2",_unit,_baseSkills);
 	};
 
 	private _skillParameters = [

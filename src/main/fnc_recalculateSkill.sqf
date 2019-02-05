@@ -26,9 +26,13 @@ private _skillIndex = [_subSkill] call FUNCMAIN(subSkillToIndex);
 
 private _skillPipeline = _pipelines select _skillIndex;
 
-private _calcSkill = 1.0;
-{
-	_calcSkill = _calcSkill * _x;
-}forEach _skillPipeline;
+if ([_skillPipeline call FUNCMAIN(hasBaseSkill)]) then {
+    private _calcSkill = 1.0;
+    {
+        _calcSkill = _calcSkill * _x;
+    }forEach _skillPipeline;
 
-_unit setSkill [_subSkill,_calcSkill];
+    _unit setSkill [_subSkill,_calcSkill];
+    LOG_3("Unit: %1, Skill %2 recalculated to: %3 from pipeline",_unit,_subSkill,_calcSkill);
+};
+

@@ -5,10 +5,10 @@ class CfgPatches
 			units[] = { };
 			weapons[] = { };
 			requiredAddons[] = {"CBA_MAIN"};
-			version = "1.2";
-			versionStr = "1.2";
+			version = "2.0.alpha1";
+			versionStr = "2.0.alpha1";
 			versionDesc="CFO_BAI_detect";
-			versionAr[] = {1,2};
+			versionAr[] = {2,0,0};
 			author = "BrightCandle";
 			authors[]= {"BrightCandle"};
 			url = "https://www.charliefoxtrotops.com";

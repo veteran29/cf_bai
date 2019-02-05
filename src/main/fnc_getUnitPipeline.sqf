@@ -17,4 +17,4 @@ Author:
 
 params ["_unit"];
 
-_unit getVariable ["CF_BAI_SKILLPIPELINE",[[0],[0],[0],[0],[0],[0],[0],[0],[0]] ];
+_unit getVariable ["CF_BAI_SKILLPIPELINE",[[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]] ];

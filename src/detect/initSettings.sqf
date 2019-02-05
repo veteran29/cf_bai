@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-_categoryName="CF_BAI_DETECT";
+_categoryName="CF_BAI_detect";
 
 [   QGVAR(playerVisibility_standing_chance),"SLIDER",
     ["Player Visibility -Standing chance","Vision Test for player stance"],

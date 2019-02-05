@@ -1,8 +1,8 @@
 #define PREFIX CF_BAI
-#define MAJOR 1
-#define MINOR 3
-#define PATCHLVL 2
-#define BUILD 10
+#define MAJOR 2
+#define MINOR 0
+#define PATCHLVL 0
+#define BUILD 200
 
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 #define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD
