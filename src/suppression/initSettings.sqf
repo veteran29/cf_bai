@@ -2,6 +2,13 @@
 
 _categoryName="CF_BAI_suppression";
 
+//disable
+
+[   QGVAR(disableSuppression),"CHECKBOX",
+    ["Disable Suppression Module","When enable all suppression functions will stop"],[_categoryName,"Enable"],
+    false,true,{}
+] call CBA_Settings_fnc_init;
+
 //Suppression constants
 
 [   QGVAR(bulletImpact),"SLIDER",

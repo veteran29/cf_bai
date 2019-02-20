@@ -2,8 +2,12 @@
 
 params ["_unit"];
 
-LOG_2("Type of unit %1 is %2",_unit,typeof _unit);
-
-if !(isPlayer _unit) then  {
-	[_unit] spawn FUNC(updateSuppression);
+if (GVAR(disableSuppression)) exitWith {
+	INFO("Suppression module disabled");
 };
+
+if (isPlayer _unit || !(local _unit)) exitWith {
+	LOG_2("Unit %1 of type %2 is not tracking suppression",_unit,typeof _unit);
+};
+
+[_unit] spawn FUNC(updateSuppression);

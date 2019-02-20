@@ -1,5 +1,9 @@
 #include "script_component.hpp"
 
+if (GVAR(disableDetect)) exitWith {
+	INFO("Detect module disabled");;
+};
+
 INFO("Starting PostInit");
 
 if (!isServer) exitWith {
