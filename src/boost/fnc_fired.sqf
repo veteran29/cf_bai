@@ -1,25 +1,32 @@
 #include "script_component.hpp"
 
-params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
 
-LOG_1("Fired triggered by %1",_unit);
-
-private _priorTarget = _unit getVariable "CF_BAI_boost_target";
+private _boostParameters = _unit getVariable ["CF_BAI_boost",[objNull,[0,0,0],0]];
+//0 priorTarget, 1 shots fired
+private _priorTarget = _boostParameters select 0;
+private _priorPosition = _boostParameters select 1;
+private _fireCount = _boostParameters select 2;
 
 private _target = assignedTarget _unit;
+private _targetPosition = position _target;
 
-if (isNil _priorTarget) then {
+if !(isNil "_target" || {isNull _target}) then {
+	if (isNull _priorTarget) then {
+		[_unit,_targetPosition] spawn FUNC(terminateBoostThread);
 
-	[_unit,1.0] call FUNC(setSubSkills);
-};
-
-if (!isNil _target) then {
-	if (_priorTarget == _target) then {
-		[_unit,1.25] call FUNC(setSubSkills);
-	} else {
-		[_unit,1.0] call FUNC(setSubSkills);
+		LOG_4("First Shot - Unit: %1, Assigned target is %2, prior target is %3, FireCount: %4",_unit,_target,_priorTarget,_fireCount);
+		_priorTarget = _target;
 	};
-	_unit setVariable ["CF_BAI_boost_target",_target,false];
+
+	_fireCount = _fireCount +1;
+	private _skillMultiplier = (((_fireCount / GVAR(bulletsToMaxBoost)) min 1)  * (GVAR(maxBoost) -1)) + 1;
+
+	LOG_5("Shot - Unit: %1, AssignedTarget: %2, PriorTarget:%3, FireCount:%4, skillMultiplier: %5",_unit,_target,_priorTarget, _fireCount, _skillMultiplier);
+
+	[_unit,_skillMultiplier] call FUNC(setSubSkills);
+	_unit setVariable ["CF_BAI_boost",[_priorTarget,_targetPosition,_fireCount],false];
+
 } else {
-	WARNING_1("unit %1 had a nil assignedTarget",_unit);
+	LOG_1("No assigned target was found in fired for unit: %1",_unit);
 };

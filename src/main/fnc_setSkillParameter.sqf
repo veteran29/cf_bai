@@ -22,11 +22,15 @@ params ["_key","_unit","_subSkill","_parameter"];
 
 private _pipelines = [_unit] call FUNCMAIN(getUnitPipeline);
 
+LOG_1("pipelines:%1",_pipelines);
+
 private _skillIndex = [_subSkill] call FUNCMAIN(subSkillToIndex);
 
 private _pipelineIndex = [_key] call FUNCMAIN(register);
 
 private _skillPipeline = _pipelines select _skillIndex;
+
+LOG_1("skillPipeline:%1",_skillPipeline);
 
 private _countSkillPipeline =count _skillPipeline;
 if (_countSkillPipeline < _pipelineIndex+1) then {//pad out the array wih 1s
@@ -36,6 +40,8 @@ if (_countSkillPipeline < _pipelineIndex+1) then {//pad out the array wih 1s
 		_skillPipeline set [_i,1];
 	};
 };
+
+LOG_1("skillPipeline after expansion:%1",_skillPipeline);
 
 _skillPipeline set [_pipelineIndex,_parameter];
 

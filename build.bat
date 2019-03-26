@@ -18,8 +18,8 @@ copy mod.cpp %MOD%
 
 copy keys\\cf_bai.bikey %KEYS%
 
-%MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_main.pbo src/main %ADDONS%\cf_bai_main.pbo
-%MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_subskills.pbo src/subskills %ADDONS%\cf_bai_subskills.pbo
-%MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_detect.pbo src/detect %ADDONS%\cf_bai_detect.pbo
-%MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_suppression.pbo src/suppression %ADDONS%\cf_bai_suppression.pbo
-REM %MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_boost.pbo src/suppression %ADDONS%\cf_bai_boost.pbo
+%MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_main.pbo.cf_bai src/main %ADDONS%\cf_bai_main.pbo
+%MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_subskills.pbo.cf_bai src/subskills %ADDONS%\cf_bai_subskills.pbo
+%MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_detect.pbo.cf_bai src/detect %ADDONS%\cf_bai_detect.pbo
+%MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_suppression.pbo.cf_bai src/suppression %ADDONS%\cf_bai_suppression.pbo
+%MAKE% build -k keys/cf_bai.biprivatekey -s %ADDONS%\cf_bai_boost.pbo.cf_bai src/boost %ADDONS%\cf_bai_boost.pbo

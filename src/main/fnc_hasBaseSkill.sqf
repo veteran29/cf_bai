@@ -17,6 +17,8 @@ Author:
 
 params ["_pipeline"];
 
+LOG_1("base pipeline:%1",_pipeline);
+
 if ((_pipeline select 0) <0) then {
 	false;
 } else { true };

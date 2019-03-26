@@ -2,3 +2,4 @@
 
 PREP(setSubSkills);
 PREP(fired);
+PREP(terminateBoostThread);

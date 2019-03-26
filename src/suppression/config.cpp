@@ -6,8 +6,8 @@ class CfgPatches
 			weapons[] = { };
 			requiredAddons[] = {"CBA_MAIN"};
 			requiredVersion=1.88;
-			version = "2.0.alpha1";
-			versionStr = "2.0.alpha1";
+			version = "2.0.alpha2";
+			versionStr = "2.0.alpha2";
 			versionDesc="CF_BAI_suppression";
 			versionAr[] = {2,0,0};
 			author = "BrightCandle";

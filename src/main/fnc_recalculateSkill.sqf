@@ -22,11 +22,15 @@ params ["_unit","_subSkill"];
 
 private _pipelines = [_unit] call FUNCMAIN(getUnitPipeline);
 
+LOG_1("Recalculate pipelines:%1",_pipelines);
+
 private _skillIndex = [_subSkill] call FUNCMAIN(subSkillToIndex);
 
 private _skillPipeline = _pipelines select _skillIndex;
 
-if ([_skillPipeline call FUNCMAIN(hasBaseSkill)]) then {
+LOG_1("Pipelines:%1",_skillPipeline);
+
+if ([_skillPipeline] call FUNCMAIN(hasBaseSkill)) then {
     private _calcSkill = 1.0;
     {
         _calcSkill = _calcSkill * _x;
