@@ -29,4 +29,4 @@ LOG_4("Terminating boost for Unit:%1, Alive: %2, Close:%3, AssignedTarget:%4",_u
 
 [_unit,1.0] call FUNC(setSubSkills);
 
-_unit setVariable ["CF_BAI_boost",[objNull,[0,0,0],0],false];
+_unit setVariable ["CF_BAI_boost",[objNull,[0,0,0],0,0],false];

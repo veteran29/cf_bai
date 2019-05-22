@@ -9,12 +9,12 @@ _categoryName="CF_BAI_boost";
 
 [   QGVAR(bulletsToMaxBoost),"SLIDER",
     ["Bullets to Maximum Boost","How many bullets fired on a target position to get maximum boost"],[_categoryName,"Boost"],
-    [1,10,3,0],true,{}
+    [1,10,5,0],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(maxBoost),"SLIDER",
     ["Maximum boost multiplier","The subs skills will at most be multiplied by this value"],[_categoryName,"Boost"],
-    [0,5,1.50,2],true,{}
+    [0,5,1.10,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(toleranceRange),"SLIDER",
@@ -27,3 +27,12 @@ _categoryName="CF_BAI_boost";
     [0.01,5,0.1,2],true,{}
 ] call CBA_Settings_fnc_init;
 
+[   QGVAR(minimumShotInterval),"SLIDER",
+    ["Minimum Shot interval","Limits the rate at which the units skill will be boosted when the unit is rapidly firing."],[_categoryName,"Boost"],
+    [0,10,2,0],true,{}
+] call CBA_Settings_fnc_init;
+
+[   QGVAR(minimumShotDistance),"SLIDER",
+    ["Minimum Shot Distance","Units too close will not get their skill boosted."],[_categoryName,"Boost"],
+    [0,1000,300,0],true,{}
+] call CBA_Settings_fnc_init;
