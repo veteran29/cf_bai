@@ -5,6 +5,7 @@ params ["_unit"];
 private _suppression=0;
 private _lastSuppressed=0;
 private _current =0;
+private _prior=0;
 
 while {alive _unit} do {
 	_current = getSuppression _unit;
@@ -12,8 +13,8 @@ while {alive _unit} do {
 		_current =0;
 	};
 	
-	if (_current > 0) then {
-		_suppression = (_suppression + (GVAR(bulletImpact) * _current)) min 1.0;
+	if (_current > 0 && {_current>_prior}) then {
+		_suppression = (_suppression + GVAR(bulletImpact)) min 1.0;
 		[_unit,_suppression] call FUNC(setSubSkills);
 
 		_lastSuppressed = time;
@@ -25,12 +26,12 @@ while {alive _unit} do {
 		if((time - _lastSuppressed) >GVAR(heldTime)) then {
 			_suppression = (_suppression - GVAR(decay)) max 0;
 			
-			[_unit,_current] call FUNC(setSubSkills);
+			[_unit,_suppression] call FUNC(setSubSkills);
 
 			LOG_2("Unit: %1, decayed suppression to: %2",_unit,_suppression);
 		};
 	};
-
+	_prior = _current;
 	sleep 0.1;
 };
 

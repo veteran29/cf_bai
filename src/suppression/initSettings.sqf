@@ -13,7 +13,7 @@ _categoryName="CF_BAI_suppression";
 
 [   QGVAR(bulletImpact),"SLIDER",
     ["Bullet Impact","The amount of suppression a bullet will impact on a unit"],[_categoryName,"Suppression"],
-    [0.001,1.0,0.15,3],true,{}
+    [0.1,1.0,0.1,2],true,{}
 ] call CBA_Settings_fnc_init;
 
 [   QGVAR(heldTime),"SLIDER",

@@ -24,4 +24,8 @@ private _skills = [
 	[_suppression,GVAR(general)] call FNC_x
 ];
 
+LOG_2("Unit: %1, Skills: %2",_unit,_skills);
+
 [_unit,"CF_BAI_suppression",_skills] call CF_BAI_fnc_setSkillsParameters;
+
+LOG_3("Unit: %1, Pipeline: %2, Accuracy: %3", _unit, (_unit getVariable ["CF_BAI_SKILLPIPELINE"]), (_unit skillFinal "aimingAccuracy") );
