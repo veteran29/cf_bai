@@ -2,11 +2,12 @@ class CfgPatches
 {
 	class CF_BAI_detect
 		{
+			name="detect";
 			units[] = { };
 			weapons[] = { };
 			requiredAddons[] = {"CBA_MAIN"};
-			version = "2.0.alpha2";
-			versionStr = "2.0.alpha2";
+			version = "2.0.alpha3";
+			versionStr = "2.0.alpha3";
 			versionDesc="CFO_BAI_detect";
 			versionAr[] = {2,0,0};
 			author = "BrightCandle";

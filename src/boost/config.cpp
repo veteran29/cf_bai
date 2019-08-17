@@ -2,12 +2,13 @@ class CfgPatches
 {
 	class CF_BAI_boost
 		{
+			name="boost";
 			units[] = { };
 			weapons[] = { };
 			requiredAddons[] = {"CBA_MAIN"};
 			requiredVersion=1.88;
-			version = "2.0.alpha2";
-			versionStr = "2.0.alpha2";
+			version = "2.0.alpha3";
+			versionStr = "2.0.alpha3";
 			versionDesc="CF_BAI_boost";
 			versionAr[] = {2,0,0};
 			author = "BrightCandle";
@@ -30,4 +31,5 @@ class CfgSettings {
    };
 };
 
+#include "CfgFunctions.hpp"
 #include "CfgEventHandlers.hpp"
