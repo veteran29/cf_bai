@@ -11,12 +11,13 @@ while {true} do{
 
 	private _startTime = diag_tickTime;
 	{
+		private _terrainCount = count nearestTerrainObjects [_x, _reducingTerrains, GVAR(terrain_range),false,true];
+		private _terrainImpact = (_terrainCount min _maxTerrainCount)/_maxTerrainCount;
+
 		if (!isPlayer _x) then {
-			private _terrainCount = count nearestTerrainObjects [_x, _reducingTerrains, GVAR(terrain_range),false,true];
-			
-			private _terrainImpact = (_terrainCount min _maxTerrainCount)/_maxTerrainCount;
-			
 			[_x,_terrainImpact] call FUNC(updateUnitPipelineSkills);
+		} else {
+			[_x,_terrainImpact] call FUNC(setGroupTerrainImpact);	
 		};
 		sleep 0.02;
 	} forEach allUnits;

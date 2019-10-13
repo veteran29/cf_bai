@@ -7,8 +7,8 @@ class CfgPatches
 			weapons[] = { };
 			requiredAddons[] = {"CBA_MAIN"};
 			requiredVersion=1.88;
-			version = "2.0.alpha3";
-			versionStr = "2.0.alpha3";
+			version = "2.0.alpha4";
+			versionStr = "2.0.alpha4";
 			versionDesc="CF_BAI_subskills";
 			versionAr[] = {2,0,0};
 			author = "BrightCandle";

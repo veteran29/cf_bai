@@ -71,4 +71,13 @@ FNC_update_unit_skills = {
 	[allUnits select 0,"CF_BAI_subskills",_skillParameters] call CF_BAI_fnc_setSkillsParameters;
 };
 
-[_unit, _terrain_impact] call FNC_update_unit_skills;
+private _combinedTerrainImpact = _terrain_impact;
+
+private _enemyImpact = [_unit] call FUNC(getEnemyImpact);
+if (_enemyImpact >= 0) then {
+	_combinedTerrainImpact = (0.5 * _enemyImpact) + (0.5 * _terrain_impact)
+};
+
+LOG_4("Unit: %1, TerrainImpact: %2, EnemyImpact: %3, Combined Impact: %4",_unit,_terrain_impact,_enemyImpact,_combinedTerrainImpact);
+
+[_unit, _combinedTerrainImpact] call FNC_update_unit_skills;

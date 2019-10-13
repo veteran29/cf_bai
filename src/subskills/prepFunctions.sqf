@@ -2,3 +2,5 @@
 
 PREP(terrainCount);
 PREP(updateUnitPipelineSkills);
+PREP(setGroupTerrainImpact);
+PREP(getEnemyImpact);
