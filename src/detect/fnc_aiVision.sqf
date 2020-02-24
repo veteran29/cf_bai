@@ -10,11 +10,11 @@ CF_BAI_DETECT_FNC_awareness ={
 	private _name = "awareness";
 	private _result = [1.0,1.0];
 	switch (_awareness) do {
-		case "CARELESS":{ _result = [0.5,0.5,_name]; };
-		case "SAFE":{ _result = [0.75,1.0,_name]; };
-		case "AWARE":{ _result = [0.9,1.0,_name]; };
-		case "COMBAT":{ _result = [1.0,1.0,_name]; };
-		case "STEALTH":{ _result = [0.75,0.75,_name]; };
+		case "CARELESS":{ _result = [GVAR(aivision_careless_chance),QGVAR(aivision_careless_knowledge),_name]; };
+		case "SAFE":{ _result = [QGVAR(aivision_safe_chance),GVAR(aivision_safe_knowledge),_name]; };
+		case "AWARE":{ _result = [GVAR(aivision_aware_chance),GVAR(aivision_aware_knowledge),_name]; };
+		case "COMBAT":{ _result = [GVAR(aivision_combat_chance),GVAR(aivision_combat_knowledge),_name]; };
+		case "STEALTH":{ _result = [GVAR(aivision_stealth_chance),GVAR(aivision_stealth_knowledge),_name]; };
 		default { _result = [1.0,1.0,_name]; };
 	};
 
@@ -26,7 +26,7 @@ CF_BAI_DETECT_FNC_bino = {
 	params ["_ai"];
 	private _binos = binocular _ai;
 
-	private _result = [0.75,0.75,"bino"];
+	private _result = [GVAR(aivision_nobino_chance),GVAR(aivision_nobino_knowledge),"bino"];
 
 	if !( _binos isEqualTo "") then {
 		_result = [1.0,1.0,"bino"];
@@ -51,13 +51,16 @@ CF_BAI_DETECT_FNC_optics = {
 		
 		} forEach _modes;
 
-		private _opticPercentage = 1 - ( ((_maxDistance-400) / (1500-400)) min 1.0 max 0.0);
+		//0 is for the nooptics chance and knowledge, 1.0 is for 1.0
+		private _opticPercentage = ( ( (_maxDistance - GVAR(aivision_nooptics_range)) / (GVAR(aivision_optics_range) - GVAR(aivision_nooptics_range)) ) min 1.0 max 0.0);
 
-		private _probability = 1 - (0.5 * _opticPercentage);//between 0.5 and 1.0
+		private _chance = GVAR(aivision_nooptics_chance) + ( (1.0 - GVAR(aivision_nooptics_chance)) * _opticPercentage);
 
-		[_probability,_probability,"optics"];
+		private _knowledge = GVAR(aivision_nooptics_knowledge) + ( (1.0 - GVAR(aivision_nooptics_knowledge)) * _opticPercentage);
+
+		[_chance,_knowledge,"optics"];
 	} else {
-		[0.5,0.5,"optics"];
+		[GVAR(aivision_nooptics_chance),GVAR(aivision_nooptics_knowledge),"optics"];
 	};
 
 };
@@ -71,7 +74,7 @@ CF_BAI_DETECT_FNC_nightvision = {
 	if (_isDay ==0) then {
 		private _nvgs= hmd _ai;
 		if (_nvgs == "") then {
-			_percentage = 0.25;
+			_percentage = GVAR(aivision_nvg_percentage);
 		} else {
 			_percentage = 1.0;
 		};

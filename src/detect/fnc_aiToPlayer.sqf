@@ -2,6 +2,7 @@
 
 params ["_ai","_player"];
 
+//This is an optimisation vision test to avoid calling other vision tests if the unit already knows everything
 CF_BAI_DETECT_FNC_getExistingKnowledge = {
 	params ["_ai","_player"];
 
@@ -43,7 +44,7 @@ CF_BAI_DETECT_FNC_get_distance = {
 	
 	private _spotDistanceSkill = _ai skillFinal "spotDistance";
 
-	private _maxDistance = 1200 * _spotDistanceSkill;
+	private _maxDistance = GVAR(aiplayervision_max_distance) * _spotDistanceSkill;
 
 	private _minimumDistance = 200 + (_spotDistanceSkill * 100);
 
@@ -56,7 +57,7 @@ CF_BAI_DETECT_FNC_get_distance = {
 	};
 
 	if(_distance >= _minimumDistance && _distance < _maxDistance) then {
-		private _probability =1.0 - ((_distance - 300)/(_maxDistance-300));
+		private _probability =1.0 - ((_distance - _minimumDistance)/(_maxDistance-_minimumDistance));
 		_result =  [_probability,_probability,"distance"];
 	};
 	

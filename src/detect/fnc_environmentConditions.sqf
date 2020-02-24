@@ -1,8 +1,12 @@
+#include "script_component.hpp"
+
 CF_BAI_DETECT_FNC_day_night = {
 	private _transitionState = sunOrMoon;
 
+	_remaining = 1.0 - GVAR(environmentConiditions_nightTime);
+
 	// is 0 or 1, is it just more unlikely at night or should it adjust distance and other factors
-	private _percentage = 0.5 + sunOrMoon/2;
+	private _percentage = GVAR(environmentConiditions_nightTime) + (sunOrMoon * _remaining);
 
 	[_percentage,_percentage,"dayNight"];
 };
@@ -12,9 +16,9 @@ CF_BAI_DETECT_FNC_day_night = {
 CF_BAI_DETECT_FNC_rain = {
 	private _rainLevel = rain;
 
-	private _reductionPercentage = 0.2;
+	private _reductionPercentage = GVAR(environmentConiditions_rain);
 
-	private _finalValue = 1 - (_reductionPercentage *_rainLevel); //0.8-1.0
+	private _finalValue = 1 - (_reductionPercentage *_rainLevel);
 
 	[_finalValue,_finalValue,"rain"];
 };
@@ -23,7 +27,9 @@ CF_BAI_DETECT_FNC_rain = {
 CF_BAI_DETECT_FNC_fog = {
 	private _fog = fog;
 
-	private _finalValue = 1 - (0.9 *_fog);
+	private _reductionPercentage = GVAR(environmentConiditions_fog);
+
+	private _finalValue = 1 - (GVAR(environmentConiditions_fog) *_fog);
 
 	[_finalValue,_finalValue,"fog"];
 };

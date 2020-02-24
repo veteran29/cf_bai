@@ -8,6 +8,15 @@ private _probability = 1.0;
 	_probability = _probability * _testProb;
 } forEach _visionTests;
 
+private _originalProbability = _probability;
+//adjust probability with global modifier
+if (GVAR(overall_visibility_multiplier) > 1.0) then {
+	_probability = _probability + ((1.0 - _probability) * (1.0 - GVAR(overall_visibility_multiplier)));
+} else {
+	_probability = _probability * GVAR(overall_visibility_multiplier);
+};
+
+
 //Do a test for every second
 //Compensates for running the visionTests less often without impacting probability as if tests were every second.
 private _finalProbability = 1.0 - ((1.0- _probability) ^ _timeInSeconds);
